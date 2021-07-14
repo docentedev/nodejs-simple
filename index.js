@@ -1,12 +1,17 @@
 const express = require('express')
-const path = require('path')
+const handlebars = require('express-handlebars')
+const getTodos = require('./get-todos')
 const app = express()
 const port = 3000
 
 app.use('/static', express.static('public'))
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/index.html'))
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+
+app.get('/', async (req, res) => {
+    const todos = await getTodos()
+    res.render('index', { todos });
 })
 
 

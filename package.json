@@ -5,11 +5,15 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test:db": "node db.js",
+        "migrate:db": "node migrate.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.17.1"
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.2",
+        "pg": "^8.6.0"
     }
 }
