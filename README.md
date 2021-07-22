@@ -1,7 +1,7 @@
-# Simple Node JS Website with Express
+# Simple Node
 
-```
-/Applications/Postgres.app/Contents/Versions/13/bin/psql -p5432 "postgres"
-/Applications/Postgres.app/Contents/Versions/13/bin/psql -p5432 "simple_db" -c "SELECT * from todos"
-node db.js
-```
+## Create Docker container
+
+
+- docker build . -t app-node-js
+- docker run -d -p 4000:4000 app-node-js

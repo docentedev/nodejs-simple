@@ -4,7 +4,9 @@ const fs = require('fs')
 const { Client } = require('pg')
 
 const migrate = async () => {
-    const client = new Client()
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+    })
     await client.connect()
 
     const sql = fs.readFileSync('data.sql').toString();

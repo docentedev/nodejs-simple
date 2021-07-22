@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-CL">
 
 <head>
     <meta charset="UTF-8">
@@ -19,45 +19,16 @@
 
         <div class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item">
-                    Inicio
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+                <a class="navbar-item" href="/todo-create">
+                    Todo Create
                 </a>
             </div>
         </div>
     </nav>
-
-    <div class="container m-6">
-        <div class="columns">
-            <div class="column">
-                <h1>Servicio web</h1>
-                <div class="card mt-6">
-                    <div class="card-content">
-                        <div class="content">
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {{#each todos}}
-                                    <tr>
-                                        <th>{{this.id}}</th>
-                                        <td>{{this.title}}</td>
-                                        <td>{{this.description}}</td>
-                                    </tr>
-                                {{/each}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{{body}}}
 </body>
 
 </html>

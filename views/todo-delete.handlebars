@@ -1,0 +1,39 @@
+<div class="container m-6">
+        <div class="columns">
+            <div class="column">
+                <h1 class="title">Todo delete</h1>
+                <div class="card mt-6">
+                    <div class="card-content">
+                        <div class="content">
+                            <p>Confirm delete Todo id {{id}}</p>
+                            <form class="form-horizontal" role="form" method="POST" action="{{! URL: nodejs-simple/tasks/create }}">
+                                <input type="hidden" name="id" value="{{id}}">
+                               <button class="button is-link is-light">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    const formDelete = document.querySelector('form')
+    formDelete.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const formData = new FormData(formDelete)
+        const id = formData.get('id')
+        const headers = new Headers()
+        headers.append('Content-Type', 'application/json')
+        fetch(`/todos/${id}`, {
+            method: 'DELETE',
+            headers,
+        })
+            .then((res) => {
+                if (res.status === 200) {
+                    res.json().then((data) => {
+                        window.location.href = '/'
+                    })
+                }
+            })
+    })
+</script>
