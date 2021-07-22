@@ -1,0 +1,61 @@
+<div class="container m-6">
+        <div class="columns">
+            <div class="column">
+                <h1 class="title">User create</h1>
+                <div class="card mt-6">
+                    <div class="card-content">
+                        <div class="content">
+                            <form id="create" class="form-horizontal" role="form" method="POST" action="{{! URL: nodejs-simple/tasks/create }}">
+                                {{! Input: title }}
+                                <div class="form-group">
+                                    <div class="field">
+                                        <label class="label">Title</label>
+                                        <div class="control">
+                                            <input required type="text" class="input is-primary" name="title" placeholder="Title">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Description</label>
+                                        <div class="control">
+                                            <textarea required class="input is-primary" name="description" placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-link is-light">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    const createForm = document.querySelector('#create');
+    createForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        
+        if (form.checkValidity()) {
+            fetch('/todos', {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: form.title.value,
+                    description: form.description.value
+                }),
+                headers: headers
+            }).then((res) => {
+                if (res.status === 200) {
+                    res.json().then((data) => {
+                        window.location.href = '/'
+                    })
+                }
+            })
+        }
+    });
+</script>

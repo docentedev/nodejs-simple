@@ -1,18 +1,19 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
-const getTodos = require('./get-todos')
+const indexRoute = require('./routes/index')
+const todosApi = require('./api/index')
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
+
+app.use(express.json()) // for parsing application/json
 
 app.use('/static', express.static('public'))
 
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
+app.use('/', indexRoute)
+app.use('/todos', todosApi)
 
-app.get('/', async (req, res) => {
-    const todos = await getTodos()
-    res.render('index', { todos });
-})
+app.engine('handlebars', handlebars())
+app.set('view engine', 'handlebars')
 
 
 app.listen(port, () => {
