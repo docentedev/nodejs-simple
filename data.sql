@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS todos (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     title varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
-    created_at timestamp with time zone NOT NULL,
+    created_at timestamp with time zone NOT NULL default current_timestamp,
 );
 
 INSERT INTO todos (title, description) VALUES ('First todo', 'First todo description', now());
